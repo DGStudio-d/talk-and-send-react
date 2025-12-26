@@ -1,19 +1,48 @@
 
 import { useParams, useNavigate } from "react-router-dom";
-import { professors } from "@/data/professors";
+import { useTeacher } from "@/hooks/useTeachers";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { Skeleton } from "@/components/ui/skeleton";
 import { ArrowRight, SendIcon } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { useTranslation } from "react-i18next";
 
 const ProfessorDetail = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
-  const { t, dir } = useLanguage();
+  const { t } = useTranslation();
+  const { dir, locale } = useLanguage();
   
-  const professor = professors.find(prof => prof.id === id);
+  const { data: teacher, isLoading, error } = useTeacher(Number(id));
+
+  // Get bio in current language
+  const getBio = () => {
+    if (!teacher || !teacher.bio) return '';
+    if (locale === 'ar') return teacher.bio.ar || teacher.bio.en || '';
+    if (locale === 'es') return teacher.bio.es || teacher.bio.en || '';
+    return teacher.bio.en || '';
+  };
+
+  if (isLoading) {
+    return (
+      <div className="container mx-auto px-4 py-12" dir={dir}>
+        <Skeleton className="h-10 w-40 mb-6" />
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <Skeleton className="h-96 w-full rounded-lg" />
+          <div className="space-y-4">
+            <Skeleton className="h-10 w-3/4" />
+            <Skeleton className="h-6 w-1/2" />
+            <Skeleton className="h-32 w-full" />
+            <Skeleton className="h-12 w-full" />
+            <Skeleton className="h-12 w-full" />
+          </div>
+        </div>
+      </div>
+    );
+  }
   
-  if (!professor) {
+  if (error || !teacher) {
     return (
       <div className="container mx-auto px-4 py-16 text-center" dir={dir}>
         <h2 className="text-2xl font-bold mb-4">{t('professors.notFound')}</h2>
@@ -23,6 +52,9 @@ const ProfessorDetail = () => {
       </div>
     );
   }
+
+  const teacherName = teacher.user?.name || t('professors.anonymous');
+  const profileImage = teacher.profile_image_url || '/placeholder-avatar.png';
   
   return (
     <div className="container mx-auto px-4 py-12" dir={dir}>
@@ -38,20 +70,21 @@ const ProfessorDetail = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
         <div className="rounded-lg overflow-hidden">
           <img 
-            src={professor.image} 
-            alt={professor.name} 
+            src={profileImage} 
+            alt={teacherName} 
             className="w-full h-auto object-cover"
+            loading="lazy"
           />
         </div>
         
         <Card>
           <CardContent className="p-6">
-            <h1 className="text-3xl font-bold mb-2">{professor.name}</h1>
-            <p className="text-xl text-academy-green mb-4">{professor.title}</p>
+            <h1 className="text-3xl font-bold mb-2">{teacherName}</h1>
+            <p className="text-xl text-academy-green mb-4">{t('professors.teacher')}</p>
             
             <div className="border-t border-b py-4 my-4">
-              <p className="text-gray-700 leading-relaxed">
-                {professor.description}
+              <p className="text-gray-700 leading-relaxed whitespace-pre-wrap">
+                {getBio()}
               </p>
             </div>
             

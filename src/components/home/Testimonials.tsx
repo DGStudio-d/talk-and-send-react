@@ -1,11 +1,13 @@
 
 import { useLanguage } from "@/contexts/LanguageContext";
+import { useTranslation } from "react-i18next";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import { Card, CardContent } from "@/components/ui/card";
 import { testimonials } from "@/data/testimonials";
 
 const Testimonials = () => {
-  const { t, dir } = useLanguage();
+  const { t } = useTranslation();
+  const { dir } = useLanguage();
 
   return (
     <div className="bg-academy-green py-16" dir={dir}>

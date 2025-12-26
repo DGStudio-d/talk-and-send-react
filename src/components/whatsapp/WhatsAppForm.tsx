@@ -4,6 +4,7 @@ import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -21,7 +22,8 @@ type FormValues = z.infer<typeof formSchema>;
 const WhatsAppForm = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
-  const { t, dir } = useLanguage();
+  const { t } = useTranslation();
+  const { dir } = useLanguage();
   
   const {
     register,
@@ -37,7 +39,7 @@ const WhatsAppForm = () => {
   });
 
   // This would typically come from an environment variable or configuration
-  const whatsappNumber = "212612345678"; // Example number with country code (Morocco)
+  const whatsappNumber = "212625815692"; // Learn Academy WhatsApp number
 
   const onSubmit = (data: FormValues) => {
     setIsSubmitting(true);

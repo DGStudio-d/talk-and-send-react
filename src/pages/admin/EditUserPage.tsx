@@ -50,6 +50,7 @@ const EditUserPage = () => {
       title: "تم التحديث بنجاح",
       description: "تم تحديث بيانات المستخدم بنجاح",
     });
+    refetch();
     
     // Navigate back to users page after successful update
     setTimeout(() => {

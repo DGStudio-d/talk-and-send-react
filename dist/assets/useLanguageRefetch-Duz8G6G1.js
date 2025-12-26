@@ -1,0 +1,1 @@
+import{e as i,r}from"./index-BbbxppCW.js";const s=e=>{const n=i();r.useEffect(()=>{const a=()=>{e&&e.length>0?e.forEach(t=>{n.invalidateQueries({queryKey:[t]})}):n.invalidateQueries()};return window.addEventListener("languageChanged",a),()=>{window.removeEventListener("languageChanged",a)}},[n,e])};export{s as u};

@@ -1,11 +1,13 @@
 
 import { useNavigate } from "react-router-dom";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
 
 const Hero = () => {
   const navigate = useNavigate();
-  const { t, dir } = useLanguage();
+  const { t } = useTranslation();
+  const { dir } = useLanguage();
   
   return (
     <div className="bg-gradient-to-b from-white to-gray-100 py-16 md:py-24" dir={dir}>
@@ -42,6 +44,7 @@ const Hero = () => {
               src="/lovable-uploads/8f1fccaa-5cce-4888-a54d-fe66266e441a.png" 
               alt="Language Course" 
               className="rounded-lg shadow-xl w-full h-auto"
+              loading="lazy"
             />
           </div>
         </div>

@@ -1,12 +1,44 @@
+import LogoComponent from './LogoComponent';
 
-import { Link } from "react-router-dom";
+interface LogoProps {
+  isAdmin?: boolean;
+  variant?: 'main' | 'white' | 'icon' | 'primary' | 'secondary' | 'alternative1' | 'alternative2';
+  className?: string;
+  size?: 'sm' | 'md' | 'lg' | 'xl';
+  onClick?: () => void;
+}
 
-const Logo = ({ isAdmin }: { isAdmin?: boolean }) => {
+const Logo: React.FC<LogoProps> = ({ 
+  isAdmin = false, 
+  variant = 'primary',
+  className = '',
+  size = 'md',
+  onClick
+}) => {
+  // Map legacy variant names to new ones for backward compatibility
+  const variantMap = {
+    main: 'primary' as const,
+    white: 'secondary' as const,
+    icon: 'icon' as const,
+    primary: 'primary' as const,
+    secondary: 'secondary' as const,
+    alternative1: 'alternative1' as const,
+    alternative2: 'alternative2' as const,
+  };
+
+  const mappedVariant = variantMap[variant] || 'primary';
+
   return (
-    <Link to={isAdmin ? "/admin" : "/"} className="flex items-center space-x-2">
-      <span className="rtl text-2xl font-bold text-academy-green">عندنا</span>
-      <span className="rtl text-gray-600 text-xl">دورات لغوية</span>
-    </Link>
+    <LogoComponent
+      variant={mappedVariant}
+      size={size}
+      className={className}
+      isAdmin={isAdmin}
+      onClick={onClick}
+      asLink={true}
+      showLoading={true}
+      showFallback={true}
+    />
   );
 };
 

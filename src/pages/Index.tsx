@@ -5,6 +5,7 @@ import LanguagesList from "@/components/home/LanguagesList";
 import Testimonials from "@/components/home/Testimonials";
 import NavBar from "@/components/common/NavBar";
 import Footer from "@/components/common/Footer";
+import WhatsAppButton from "@/components/common/WhatsAppButton";
 
 const Index = () => {
   return (
@@ -15,6 +16,7 @@ const Index = () => {
       <LanguagesList />
       <Testimonials />
       <Footer />
+      <WhatsAppButton />
     </div>
   );
 };

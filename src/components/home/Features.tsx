@@ -1,10 +1,12 @@
 
 import { useLanguage } from "@/contexts/LanguageContext";
+import { useTranslation } from "react-i18next";
 import { Card, CardContent } from "@/components/ui/card";
 import { CheckCircle, Clock, CreditCard, Users } from "lucide-react";
 
 const Features = () => {
-  const { t, dir } = useLanguage();
+  const { t } = useTranslation();
+  const { dir } = useLanguage();
 
   const features = [
     {

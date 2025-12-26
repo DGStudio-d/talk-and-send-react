@@ -1,5 +1,6 @@
 
 import { useLanguage } from "@/contexts/LanguageContext";
+import { useTranslation } from "react-i18next";
 import RegistrationForm from "@/components/registration/RegistrationForm";
 import BankTransferInfo from "@/components/registration/BankTransferInfo";
 import NavBar from "@/components/common/NavBar";
@@ -7,7 +8,8 @@ import Footer from "@/components/common/Footer";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 const RegistrationPage = () => {
-  const { t, dir } = useLanguage();
+  const { t } = useTranslation();
+  const { dir } = useLanguage();
 
   return (
     <div>

@@ -8,7 +8,7 @@ pnpm-debug.log*
 lerna-debug.log*
 
 node_modules
-dist
+# dist - commented out for react-build branch to track build files
 dist-ssr
 *.local
 

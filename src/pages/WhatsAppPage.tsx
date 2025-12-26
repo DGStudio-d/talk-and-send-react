@@ -1,11 +1,13 @@
 
 import { useLanguage } from "@/contexts/LanguageContext";
+import { useTranslation } from "react-i18next";
 import WhatsAppForm from "@/components/whatsapp/WhatsAppForm";
 import NavBar from "@/components/common/NavBar";
 import Footer from "@/components/common/Footer";
 
 const WhatsAppPage = () => {
-  const { t, dir } = useLanguage();
+  const { t } = useTranslation();
+  const { dir } = useLanguage();
 
   return (
     <div>

@@ -1,11 +1,13 @@
 
 import { Link } from "react-router-dom";
-import { useLanguage } from "@/contexts/LanguageContext"; 
+import { useLanguage } from "@/contexts/LanguageContext";
+import { useTranslation } from "react-i18next";
 import Logo from "./Logo";
 import { Facebook, Instagram, Twitter, Youtube } from "lucide-react";
 
 const Footer = () => {
-  const { t, dir } = useLanguage();
+  const { t } = useTranslation();
+  const { dir } = useLanguage();
   const currentYear = new Date().getFullYear();
 
   return (
@@ -51,7 +53,7 @@ const Footer = () => {
               {t('contact.email')}: info@learnacademy.com
             </p>
             <p className="text-gray-600 mb-4">
-              {t('contact.phone')}: +212 612 345 678
+              {t('contact.phone')}: +212 625-815692
             </p>
             <div className="flex space-x-4">
               <a href="#" className="text-gray-600 hover:text-academy-green">

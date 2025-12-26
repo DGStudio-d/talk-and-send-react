@@ -1,0 +1,17 @@
+{
+  "name": "Learn Academy",
+  "short_name": "Learn Academy",
+  "description": "Online Language Learning Platform",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ],
+  "theme_color": "#22c55e",
+  "background_color": "#ffffff",
+  "display": "standalone",
+  "start_url": "/",
+  "scope": "/"
+}

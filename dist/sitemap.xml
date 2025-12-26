@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <!-- Home Page -->
+  <url>
+    <loc>https://learnaccademy.com/</loc>
+    <lastmod>2025-11-02</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://learnaccademy.com/?lang=en" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://learnaccademy.com/?lang=ar" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://learnaccademy.com/?lang=es" />
+  </url>
+  
+  <!-- Languages Page -->
+  <url>
+    <loc>https://learnaccademy.com/languages</loc>
+    <lastmod>2025-11-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  
+  <!-- Professors/Teachers Page -->
+  <url>
+    <loc>https://learnaccademy.com/professors</loc>
+    <lastmod>2025-11-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <!-- Contact Page -->
+  <url>
+    <loc>https://learnaccademy.com/contact</loc>
+    <lastmod>2025-11-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <!-- Registration Page -->
+  <url>
+    <loc>https://learnaccademy.com/register</loc>
+    <lastmod>2025-11-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <!-- Login Page -->
+  <url>
+    <loc>https://learnaccademy.com/login</loc>
+    <lastmod>2025-11-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <!-- WhatsApp Contact -->
+  <url>
+    <loc>https://learnaccademy.com/whatsapp</loc>
+    <lastmod>2025-11-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
+</urlset>

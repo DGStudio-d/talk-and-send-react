@@ -2,6 +2,7 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
 import NavBar from "@/components/common/NavBar";
 import Footer from "@/components/common/Footer";
@@ -9,7 +10,8 @@ import Footer from "@/components/common/Footer";
 const NotFound = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const { t, dir } = useLanguage();
+  const { t } = useTranslation();
+  const { dir } = useLanguage();
 
   useEffect(() => {
     console.error(

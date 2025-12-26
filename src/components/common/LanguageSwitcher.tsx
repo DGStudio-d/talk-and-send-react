@@ -1,6 +1,7 @@
 
 import React from 'react';
 import { Globe } from 'lucide-react';
+import { useQueryClient } from '@tanstack/react-query';
 import { useLanguage, SupportedLanguage } from '@/contexts/LanguageContext';
 import {
   DropdownMenu,
@@ -11,7 +12,8 @@ import {
 import { Button } from '@/components/ui/button';
 
 const LanguageSwitcher: React.FC = () => {
-  const { language, setLanguage, t } = useLanguage();
+  const { language, setLanguage } = useLanguage();
+  const queryClient = useQueryClient();
 
   const languageOptions: { code: SupportedLanguage, name: string, flag: string, isRtl: boolean }[] = [
     { code: 'ar', name: 'العربية', flag: '🇸🇦', isRtl: true },
@@ -39,7 +41,9 @@ const LanguageSwitcher: React.FC = () => {
         {languageOptions.map((option) => (
           <DropdownMenuItem
             key={option.code}
-            onClick={() => setLanguage(option.code)}
+            onClick={() => {
+              setLanguage(option.code);
+            }}
             className="flex items-center gap-2 cursor-pointer"
           >
             <span>{option.flag}</span>

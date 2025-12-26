@@ -1,0 +1,9 @@
+export { default as BrowseQuizzes } from './BrowseQuizzes';
+export { default as MyAttempts } from './MyAttempts';
+export { default as QuizDetail } from './QuizDetail';
+export { default as QuizResults } from './QuizResults';
+export { default as StudentDashboard } from './StudentDashboard';
+export { default as TakeQuiz } from './TakeQuiz';
+export { default as SubscriptionPlans } from './SubscriptionPlans';
+export { default as MySubscriptions } from './MySubscriptions';
+export { default as JoinGroup } from './JoinGroup';

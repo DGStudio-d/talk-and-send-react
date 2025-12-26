@@ -5,6 +5,9 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Import accessibility enhancements */
+@import './styles/accessibility.css';
+
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -104,12 +107,119 @@
   }
 }
 
+/* RTL Support */
+[dir="rtl"] {
+  direction: rtl !important;
+}
+
+[dir="ltr"] {
+  direction: ltr !important;
+}
+
+/* Remove rtl/ltr classes - use dir attribute instead */
 .rtl {
-  direction: rtl;
-  text-align: right;
+  /* This class should not be used - use dir="rtl" instead */
 }
 
 .ltr {
-  direction: ltr;
-  text-align: left;
+  /* This class should not be used - use dir="ltr" instead */
+}
+
+/* RTL-specific utilities */
+[dir="rtl"] .space-x-reverse > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-x-reverse: 1;
+}
+
+[dir="rtl"] .divide-x-reverse > :not([hidden]) ~ :not([hidden]) {
+  --tw-divide-x-reverse: 1;
+}
+
+/* Auto-reverse spacing in RTL */
+[dir="rtl"] .gap-4,
+[dir="rtl"] .gap-2,
+[dir="rtl"] .gap-6,
+[dir="rtl"] .gap-8 {
+  /* Gap works automatically in RTL */
+}
+
+/* Fix margins and paddings for RTL */
+[dir="rtl"] .ml-auto {
+  margin-left: 0 !important;
+  margin-right: auto !important;
+}
+
+[dir="rtl"] .mr-auto {
+  margin-right: 0 !important;
+  margin-left: auto !important;
+}
+
+[dir="rtl"] .ml-2 {
+  margin-left: 0 !important;
+  margin-right: 0.5rem !important;
+}
+
+[dir="rtl"] .mr-2 {
+  margin-right: 0 !important;
+  margin-left: 0.5rem !important;
+}
+
+[dir="rtl"] .ml-4 {
+  margin-left: 0 !important;
+  margin-right: 1rem !important;
+}
+
+[dir="rtl"] .mr-4 {
+  margin-right: 0 !important;
+  margin-left: 1rem !important;
+}
+
+/* Fix padding for RTL */
+[dir="rtl"] .pl-8 {
+  padding-left: 0 !important;
+  padding-right: 2rem !important;
+}
+
+[dir="rtl"] .pr-8 {
+  padding-right: 0 !important;
+  padding-left: 2rem !important;
+}
+
+/* Fix flex direction for RTL - but only when needed */
+[dir="rtl"] .flex-row:not(.flex-row-reverse) {
+  /* Don't auto-reverse, let components handle it */
+}
+
+/* Fix text alignment */
+[dir="rtl"] .text-left {
+  text-align: right !important;
+}
+
+[dir="rtl"] .text-right {
+  text-align: left !important;
+}
+
+/* Fix border radius for RTL */
+[dir="rtl"] .rounded-l {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  border-top-right-radius: 0.25rem;
+  border-bottom-right-radius: 0.25rem;
+}
+
+[dir="rtl"] .rounded-r {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  border-top-left-radius: 0.25rem;
+  border-bottom-left-radius: 0.25rem;
+}
+
+/* Fix absolute positioning for icons */
+[dir="rtl"] .left-2 {
+  left: auto !important;
+  right: 0.5rem !important;
+}
+
+[dir="rtl"] .right-2 {
+  right: auto !important;
+  left: 0.5rem !important;
 }

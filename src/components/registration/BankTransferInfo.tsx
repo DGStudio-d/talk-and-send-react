@@ -1,12 +1,14 @@
 
 import { useLanguage } from "@/contexts/LanguageContext";
+import { useTranslation } from "react-i18next";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { MessageSquare } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const BankTransferInfo = () => {
-  const { t, dir } = useLanguage();
+  const { t } = useTranslation();
+  const { dir } = useLanguage();
 
   return (
     <Card className="w-full" dir={dir}>
@@ -37,10 +39,10 @@ const BankTransferInfo = () => {
             {t('register.bankTransfer.cihBank')}
           </h3>
           <div className="space-y-2 bg-gray-50 p-4 rounded-md">
-            <p><span className="font-semibold">{t('register.bankTransfer.accountHolder')}:</span> ZAKARIA AFIF</p>
-            <p><span className="font-semibold">RIB:</span> 230 610 <span className="text-academy-green font-semibold">367844521100160</span> 013</p>
+            <p><span className="font-semibold">{t('register.bankTransfer.accountHolder')}:</span> Learn Accademy</p>
+            <p><span className="font-semibold">RIB:</span> 230 610 <span className="text-academy-green font-semibold">3678445211001600</span> 13</p>
             <p><span className="font-semibold">IBAN:</span> MA64 <span className="text-academy-green font-semibold">2306 1036 7844 5211 0016 0013</span></p>
-            <p><span className="font-semibold">Code SWIFT:</span> CIHMMAMX</p>
+            <p><span className="font-semibold">Code SWIFT:</span> CIHMMAMC</p>
           </div>
         </div>
 

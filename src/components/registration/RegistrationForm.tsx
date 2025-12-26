@@ -25,7 +25,7 @@ import { useToast } from "@/components/ui/use-toast";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { languages } from "@/data/languages";
 import { sendWhatsAppMessage } from "@/services/whatsappService";
-import { useLanguage } from "@/contexts/LanguageContext";
+import { useTranslation } from "react-i18next";
 
 const formSchema = z.object({
   fullName: z.string().min(3),
@@ -42,7 +42,7 @@ const RegistrationForm = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
   const navigate = useNavigate();
-  const { t } = useLanguage();
+  const { t } = useTranslation();
 
   const form = useForm({
     resolver: zodResolver(formSchema),
@@ -58,7 +58,7 @@ const RegistrationForm = () => {
   });
 
   // This would typically come from an environment variable or configuration
-  const whatsappAdminNumber = "212612345678"; // Example number with country code (Morocco)
+  const whatsappAdminNumber = "212625815692"; // Learn Academy WhatsApp number
 
   const onSubmit = (data) => {
     setIsSubmitting(true);
