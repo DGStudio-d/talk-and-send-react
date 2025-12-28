@@ -5,15 +5,21 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { fetchLanguages } from "@/services/api";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { useEffect } from "react";
 
 const LanguagesList = () => {
   const navigate = useNavigate();
   const { t, dir } = useLanguage();
   
-  const { data: languages, isLoading, error } = useQuery({
+  const { data: languages, isLoading, error,refetch } = useQuery({
     queryKey: ['languages'],
     queryFn: fetchLanguages
   });
+  useEffect(() => {
+    if (languages) {
+      refetch();
+    }
+  }, [dir]);
   
   if (isLoading) {
     return (

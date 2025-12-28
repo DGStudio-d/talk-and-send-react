@@ -1,0 +1,356 @@
+/* Language and RTL/LTR Fixes */
+
+/* Force re-render on language change */
+[data-language-changed] {
+  animation: languageChange 0.1s ease-in-out;
+}
+
+@keyframes languageChange {
+  0% { opacity: 0.99; }
+  100% { opacity: 1; }
+}
+
+/* RTL-specific fixes for common patterns */
+.rtl .flex-row-reverse {
+  flex-direction: row-reverse;
+}
+
+.rtl .space-x-reverse > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-x-reverse: 1;
+}
+
+/* Navigation fixes - Enhanced with higher specificity */
+.rtl .justify-between {
+  direction: rtl;
+}
+
+.rtl .justify-between > * {
+  direction: ltr;
+}
+
+/* Navbar specific RTL fixes - Enhanced */
+.rtl nav,
+nav[dir="rtl"] {
+  direction: rtl !important;
+}
+
+.rtl nav .container,
+nav[dir="rtl"] .container {
+  direction: rtl !important;
+}
+
+/* Force navbar flex containers to reverse in RTL */
+.rtl nav .flex,
+nav[dir="rtl"] .flex,
+.rtl nav .justify-between,
+nav[dir="rtl"] .justify-between {
+  flex-direction: row-reverse !important;
+}
+
+/* Override Tailwind's flex classes for RTL navbar */
+.rtl nav .flex.justify-between,
+nav[dir="rtl"] .flex.justify-between {
+  flex-direction: row-reverse !important;
+  justify-content: space-between !important;
+}
+
+/* Space-x fixes for RTL navbar */
+.rtl nav .space-x-4 > :not([hidden]) ~ :not([hidden]),
+nav[dir="rtl"] .space-x-4 > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-x-reverse: 1 !important;
+  margin-right: calc(1rem * var(--tw-space-x-reverse)) !important;
+  margin-left: calc(1rem * calc(1 - var(--tw-space-x-reverse))) !important;
+}
+
+.rtl nav .space-x-2 > :not([hidden]) ~ :not([hidden]),
+nav[dir="rtl"] .space-x-2 > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-x-reverse: 1 !important;
+  margin-right: calc(0.5rem * var(--tw-space-x-reverse)) !important;
+  margin-left: calc(0.5rem * calc(1 - var(--tw-space-x-reverse))) !important;
+}
+
+/* Fix flex-row-reverse for RTL */
+.rtl .flex-row-reverse,
+nav[dir="rtl"] .flex-row-reverse {
+  flex-direction: row-reverse !important;
+}
+
+.ltr .flex-row-reverse,
+nav[dir="ltr"] .flex-row-reverse {
+  flex-direction: row !important;
+}
+
+/* Navigation links alignment */
+.rtl nav a,
+.rtl nav button,
+nav[dir="rtl"] a,
+nav[dir="rtl"] button {
+  text-align: right !important;
+}
+
+.ltr nav a,
+.ltr nav button,
+nav[dir="ltr"] a,
+nav[dir="ltr"] button {
+  text-align: left !important;
+}
+
+/* Mobile menu RTL fixes */
+.rtl nav .md\\:hidden,
+nav[dir="rtl"] .md\\:hidden {
+  flex-direction: row-reverse !important;
+}
+
+/* Force navbar to respect direction changes */
+nav[dir="rtl"] {
+  direction: rtl !important;
+}
+
+nav[dir="ltr"] {
+  direction: ltr !important;
+}
+
+/* Specific targeting for navbar children */
+nav[dir="rtl"] > div > div {
+  flex-direction: row-reverse !important;
+}
+
+nav[dir="ltr"] > div > div {
+  flex-direction: row !important;
+}
+
+/* Dropdown menu RTL fixes */
+.rtl [data-radix-dropdown-menu-content] {
+  direction: rtl;
+}
+
+.rtl [data-radix-dropdown-menu-item] {
+  text-align: right;
+}
+
+/* Form elements RTL support */
+.rtl input[type="text"],
+.rtl input[type="email"],
+.rtl input[type="tel"],
+.rtl textarea,
+.rtl select {
+  text-align: right;
+  direction: rtl;
+}
+
+.rtl input::placeholder,
+.rtl textarea::placeholder {
+  text-align: right;
+}
+
+/* Button content RTL fixes */
+.rtl .inline-flex {
+  flex-direction: row-reverse;
+}
+
+.rtl .inline-flex > svg:first-child {
+  margin-left: 0.5rem;
+  margin-right: 0;
+}
+
+.rtl .inline-flex > svg:last-child {
+  margin-right: 0.5rem;
+  margin-left: 0;
+}
+
+/* Language switcher specific fixes */
+.language-switcher-container {
+  position: relative;
+}
+
+.rtl .language-switcher-container [data-radix-dropdown-menu-content] {
+  right: 0;
+  left: auto;
+}
+
+.ltr .language-switcher-container [data-radix-dropdown-menu-content] {
+  left: 0;
+  right: auto;
+}
+
+/* Ensure text direction is properly applied */
+.rtl * {
+  direction: rtl;
+}
+
+.ltr * {
+  direction: ltr;
+}
+
+/* Navbar specific overrides for better RTL support */
+nav.rtl,
+nav[dir="rtl"],
+nav[data-direction="rtl"],
+.rtl nav {
+  direction: rtl !important;
+}
+
+nav.rtl .container,
+nav[dir="rtl"] .container,
+nav[data-direction="rtl"] .container,
+.rtl nav .container {
+  direction: rtl !important;
+}
+
+/* Force all flex containers in navbar to reverse for RTL */
+nav.rtl .flex,
+nav[dir="rtl"] .flex,
+nav[data-direction="rtl"] .flex,
+.rtl nav .flex,
+nav.rtl .justify-between,
+nav[dir="rtl"] .justify-between,
+nav[data-direction="rtl"] .justify-between,
+.rtl nav .justify-between {
+  flex-direction: row-reverse !important;
+}
+
+/* Specific targeting for main navbar container */
+nav[data-direction="rtl"] > div > div.flex {
+  flex-direction: row-reverse !important;
+}
+
+nav[data-direction="ltr"] > div > div.flex {
+  flex-direction: row !important;
+}
+
+/* Force flex-row-reverse class behavior */
+nav[data-direction="rtl"] .flex-row-reverse {
+  flex-direction: row-reverse !important;
+}
+
+nav[data-direction="rtl"] .justify-between {
+  flex-direction: row-reverse !important;
+  justify-content: space-between !important;
+}
+
+/* Ensure logo stays on the correct side */
+nav.rtl .flex-shrink-0,
+nav[dir="rtl"] .flex-shrink-0,
+nav[data-direction="rtl"] .flex-shrink-0,
+.rtl nav .flex-shrink-0 {
+  order: 1;
+}
+
+/* Ensure navigation items are on the correct side */
+nav.rtl .hidden.md\\:flex,
+nav[dir="rtl"] .hidden.md\\:flex,
+nav[data-direction="rtl"] .hidden.md\\:flex,
+.rtl nav .hidden.md\\:flex {
+  order: 2;
+  flex-direction: row-reverse !important;
+}
+
+/* Mobile menu button positioning */
+nav.rtl .md\\:hidden,
+nav[dir="rtl"] .md\\:hidden,
+nav[data-direction="rtl"] .md\\:hidden,
+.rtl nav .md\\:hidden {
+  order: 3;
+  flex-direction: row-reverse !important;
+}
+
+/* Override for specific elements that should maintain LTR */
+.rtl .ltr-override,
+.rtl code,
+.rtl pre,
+.rtl .language-code {
+  direction: ltr !important;
+  text-align: left !important;
+}
+
+/* Smooth transitions for all direction changes */
+* {
+  transition: 
+    margin 0.3s ease,
+    padding 0.3s ease,
+    text-align 0.3s ease,
+    direction 0.3s ease;
+}
+
+/* Prevent layout shift during language changes */
+.language-transition {
+  min-height: 100vh;
+  transition: all 0.3s ease;
+}
+
+/* Debug styles */
+.language-debug {
+  position: fixed;
+  top: 80px;
+  right: 20px;
+  z-index: 1000;
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  font-size: 12px;
+  max-width: 200px;
+}
+
+.rtl .language-debug {
+  right: auto;
+  left: 20px;
+}
+
+/* Additional aggressive RTL navbar fixes */
+[data-direction="rtl"] {
+  direction: rtl !important;
+}
+
+[data-direction="ltr"] {
+  direction: ltr !important;
+}
+
+/* Force navbar layout changes with higher specificity */
+nav[data-direction="rtl"] div.container div.flex.justify-between {
+  flex-direction: row-reverse !important;
+  justify-content: space-between !important;
+}
+
+nav[data-direction="ltr"] div.container div.flex.justify-between {
+  flex-direction: row !important;
+  justify-content: space-between !important;
+}
+
+/* Target the specific flex containers */
+nav[data-direction="rtl"] .flex.justify-between > div:first-child {
+  order: 2;
+}
+
+nav[data-direction="rtl"] .flex.justify-between > div:last-child {
+  order: 1;
+}
+
+nav[data-direction="ltr"] .flex.justify-between > div:first-child {
+  order: 1;
+}
+
+nav[data-direction="ltr"] .flex.justify-between > div:last-child {
+  order: 2;
+}
+
+/* Force visible layout changes */
+nav[data-direction="rtl"] .hidden.md\\:flex {
+  margin-right: auto !important;
+  margin-left: 0 !important;
+}
+
+nav[data-direction="ltr"] .hidden.md\\:flex {
+  margin-left: auto !important;
+  margin-right: 0 !important;
+}
+
+/* Debug styles to make RTL changes more visible */
+nav[data-direction="rtl"] {
+  border-left: 3px solid #22c55e !important;
+}
+
+nav[data-direction="ltr"] {
+  border-left: 3px solid #3b82f6 !important;
+}

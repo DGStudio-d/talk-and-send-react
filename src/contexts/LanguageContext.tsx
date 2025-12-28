@@ -1,4 +1,4 @@
-import React, { createContext, useState, useContext, ReactNode, useEffect } from 'react';
+import React, { createContext, useState, useContext, ReactNode, useEffect, useLayoutEffect } from 'react';
 
 // Define available languages
 export type SupportedLanguage = 'ar' | 'en' | 'es';
@@ -536,7 +536,55 @@ interface LanguageContextType {
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
 export const LanguageProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-  const [language, setLanguage] = useState<SupportedLanguage>('ar');
+  // Initialize language from localStorage or default to Arabic
+  const [language, setLanguageState] = useState<SupportedLanguage>(() => {
+    const savedLanguage = localStorage.getItem('selectedLanguage') as SupportedLanguage;
+    return savedLanguage && ['ar', 'en', 'es'].includes(savedLanguage) ? savedLanguage : 'ar';
+  });
+
+  // Enhanced setLanguage function that persists to localStorage
+  const setLanguage = (newLanguage: SupportedLanguage) => {
+    if (import.meta.env.DEV) {
+      console.log(`Setting language to: ${newLanguage}`);
+    }
+    
+    // Update state immediately
+    setLanguageState(newLanguage);
+    
+    // Persist to localStorage
+    localStorage.setItem('selectedLanguage', newLanguage);
+    
+    // Force immediate DOM update
+    const newDir = getDirection(newLanguage);
+    updateDOM(newLanguage, newDir);
+  };
+
+  // Function to update DOM immediately
+  const updateDOM = (lang: SupportedLanguage, direction: 'rtl' | 'ltr') => {
+    // Set document direction and language
+    document.documentElement.dir = direction;
+    document.documentElement.lang = lang;
+    
+    // Remove all direction classes first
+    document.documentElement.classList.remove('rtl', 'ltr');
+    document.body.classList.remove('rtl', 'ltr');
+    
+    // Add appropriate direction classes
+    document.documentElement.classList.add(direction);
+    document.body.classList.add(direction);
+    
+    // Force a re-render by updating CSS custom properties
+    document.documentElement.style.setProperty('--text-direction', direction);
+    document.documentElement.style.setProperty('--current-language', lang);
+    
+    // Add data attributes to trigger CSS animations
+    document.documentElement.setAttribute('data-language', lang);
+    document.documentElement.setAttribute('data-direction', direction);
+    
+    if (import.meta.env.DEV) {
+      console.log(`DOM updated - Language: ${lang}, Direction: ${direction}`);
+    }
+  };
 
   // Translation function
   const t = (key: string): string => {
@@ -555,18 +603,17 @@ export const LanguageProvider: React.FC<{ children: ReactNode }> = ({ children }
   // Direction based on language
   const dir = getDirection(language);
 
-  // Apply direction to HTML element
+  // Apply direction to HTML element and body classes using useLayoutEffect for immediate DOM updates
+  useLayoutEffect(() => {
+    updateDOM(language, dir);
+  }, [language, dir]);
+
+  // Additional useEffect for logging and cleanup
   useEffect(() => {
-    document.documentElement.dir = dir;
-    document.documentElement.lang = language;
-    
-    // Add appropriate class for text alignment based on direction
-    if (dir === 'rtl') {
-      document.documentElement.classList.add('rtl');
-      document.documentElement.classList.remove('ltr');
-    } else {
-      document.documentElement.classList.add('ltr');
-      document.documentElement.classList.remove('rtl');
+    if (import.meta.env.DEV) {
+      console.log(`Language state updated - Language: ${language}, Direction: ${dir}`);
+      console.log(`Document dir: ${document.documentElement.dir}, Document lang: ${document.documentElement.lang}`);
+      console.log(`Body classes: ${document.body.className}`);
     }
   }, [language, dir]);
 
